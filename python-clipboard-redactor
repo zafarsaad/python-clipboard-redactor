@@ -29,6 +29,9 @@ def replace_and_copy_to_clipboard():
     # Copy the updated content back to the clipboard
     pyperclip.copy(updated_content)
 
+def clear_text_box():
+    text_box.delete(1.0, tk.END)
+
 # Create the GUI window
 root = tk.Tk()
 root.title("Clipboard Redactor")
@@ -36,6 +39,10 @@ root.title("Clipboard Redactor")
 # Text box for displaying and editing clipboard content
 text_box = tk.Text(root, wrap='word', height=10, width=50)
 text_box.pack(padx=10, pady=10)
+
+# Clear button placed underneath textbox for contextual UI association
+clear_button = tk.Button(root, text="Clear Text", command=clear_text_box)
+clear_button.pack(pady=5)
 
 # Manually adding input fields for search and replace strings:
 search_label = tk.Label(root, text="Search for:")
@@ -52,10 +59,13 @@ replace_entry.pack()
 
 # Buttons to trigger actions
 paste_button = tk.Button(root, text="Paste from Clipboard", command=paste_from_clipboard)
-paste_button.pack(pady=5)
+paste_button.pack(pady=15)
 
 replace_button = tk.Button(root, text="Replace & Copy to Clipboard", command=replace_and_copy_to_clipboard)
 replace_button.pack(pady=5)
+
+clear_button = tk.Button(root, text="Clear Text", command=clear_text_box)
+clear_button.pack(pady=5)
 
 # Run the GUI event loop
 root.mainloop()
