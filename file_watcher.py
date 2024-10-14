@@ -13,16 +13,22 @@ class ReloadHandler(FileSystemEventHandler):
         self.script_to_run = script_to_run # Storing the scipt name in an "instance" variable
 
     def on_modified(self, event):
+        print(f"Detected modification: {event.src_path}")
+        print(f"Watching script: {self.script_to_run}")
         # Check if the modified file is the one you're watching
         if event.src_path.endswith(self.script_to_run):
             print(f"{self.script_to_run} modified! Restarting the scipt...")
             self.restart_script()
 
     def restart_script(self):
+        # Full path of the script to restart
+        script_path = os.path.join(os.getcwd(), self.script_to_run)
+        print(f"Restarting script: {script_path}")
+
         # os.execv set to replace current running process with a new one
         # sys.executable provides path to Python interpreter
         os.execv(sys.executable, ['python'] + [self.script_to_run])
-    
+
 def start_watching(script_to_run):
     # Here we create instance of ReloadHandler with script name
     event_handler = ReloadHandler(script_to_run)
@@ -31,7 +37,7 @@ def start_watching(script_to_run):
     observer = Observer()
     observer.schedule(event_handler, path='.', recursive=False)
     observer.start()
-    print(f"Watching {script_to_run} for any changes")
+    print(f"Watching {script_to_run} for any changes...")
     return observer
 
 

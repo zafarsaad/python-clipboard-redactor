@@ -48,7 +48,7 @@ clear_button.pack(pady=5)
 search_label = tk.Label(root, text="Search for:")
 search_label.pack()
 
-search_entry = tk.Entry(root, width=30)
+search_entry = tk.Entry(root, width=40)
 search_entry.pack()
 
 replace_label = tk.Label(root, text="Replace with:")
@@ -59,7 +59,7 @@ replace_entry.pack()
 
 # Buttons to trigger actions
 paste_button = tk.Button(root, text="Paste from Clipboard", command=paste_from_clipboard)
-paste_button.pack(pady=15)
+paste_button.pack(pady=5)
 
 replace_button = tk.Button(root, text="Replace & Copy to Clipboard", command=replace_and_copy_to_clipboard)
 replace_button.pack(pady=5)
