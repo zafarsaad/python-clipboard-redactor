@@ -48,7 +48,7 @@ clear_button.pack(pady=5)
 search_label = tk.Label(root, text="Search for:")
 search_label.pack()
 
-search_entry = tk.Entry(root, width=40)
+search_entry = tk.Entry(root, width=35)
 search_entry.pack()
 
 replace_label = tk.Label(root, text="Replace with:")
